@@ -1,20 +1,25 @@
-# Imagen base de PHP con Apache
-FROM php:8.2-apache
+# Usamos PHP 8.1 con Apache
+FROM php:8.1-apache
 
-# Instalar dependencias necesarias para PostgreSQL
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
-
-# Habilitar mod_rewrite para Apache (útil para rutas amigables)
+# Activamos mod_rewrite para URLs amigables
 RUN a2enmod rewrite
 
-# Copiar los archivos del proyecto al contenedor
+# Instalamos extensiones necesarias para PostgreSQL
+RUN docker-php-ext-install pdo pdo_pgsql
+
+# Copiamos el proyecto al contenedor
 COPY . /var/www/html/
 
-# Cambiar permisos si es necesario
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+# Cambiamos permisos para Apache
+RUN chown -R www-data:www-data /var/www/html
 
-# Puerto expuesto (80 para Apache)
+# Variables de entorno para conexión local (puerto 5433)
+ENV APP_ENV=local
+ENV DB_HOST=host.docker.internal
+ENV DB_PORT=5433
+ENV DB_NAME=ClinicaSalud
+ENV DB_USER=postgres
+ENV DB_PASSWORD=root1234
+
+# Exponemos puerto 80 para Apache
 EXPOSE 80
