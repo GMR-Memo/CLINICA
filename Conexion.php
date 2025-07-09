@@ -7,30 +7,29 @@ class Conexion {
     public static function conectar() {
         if (self::$conexion === null) {
             try {
-                // Detectamos si estamos en producción (Render) o local
-                $is_produccion = isset($_ENV['RENDER']) || strpos($_SERVER['HTTP_HOST'] ?? '', 'render.com') !== false;
+                $entorno = getenv('APP_ENV') ?: 'local';
 
-                if ($is_produccion) {
-                    // Configuración para RENDER
-                    $host = 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
-                    $port = '5432'; // Puerto correcto de Render
-                    $dbname = 'clinicasalud';
-                    $user = 'memo';
-                    $password = 'cE8pCJJ3zUIRViynRXwIUVx8vLjgrcmj';
+                if ($entorno === 'local') {
+                    $host = getenv('DB_HOST') ?: 'host.docker.internal';
+                    $port = getenv('DB_PORT') ?: '5433';
+                    $dbname = getenv('DB_NAME') ?: 'ClinicaSalud';
+                    $user = getenv('DB_USER') ?: 'postgres';
+                    $password = getenv('DB_PASSWORD') ?: 'root1234';
                 } else {
-                    // Configuración para LOCAL
-                    $host = 'localhost';
-                    $port = '5433'; // Cambia si tu PostgreSQL local usa otro puerto
-                    $dbname = 'ClinicaSalud';
-                    $user = 'postgres';
-                    $password = 'root1234'; // Tu contraseña local
+                    // Producción Render (ajusta estas variables si quieres)
+                    $host = getenv('DB_HOST') ?: 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
+                    $port = getenv('DB_PORT') ?: '5432';
+                    $dbname = getenv('DB_NAME') ?: 'clinicasalud';
+                    $user = getenv('DB_USER') ?: 'memo';
+                    $password = getenv('DB_PASSWORD') ?: 'cE8pCJJ3zUIRViynRXwIUVx8vLjgrcmj';
                 }
 
                 $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
                 self::$conexion = new PDO($dsn, $user, $password);
                 self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             } catch (PDOException $e) {
-                exit('❌ Error al conectar con la base de datos: ' . $e->getMessage());
+                exit('Error de conexión: ' . $e->getMessage());
             }
         }
         return self::$conexion;
