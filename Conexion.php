@@ -11,12 +11,11 @@ class Conexion {
 
                 if ($entorno === 'local') {
                     $host = getenv('DB_HOST') ?: 'host.docker.internal';
-                    $port = getenv('DB_PORT') ?: '5433';
+                    $port = getenv('DB_PORT') ?: '5432';
                     $dbname = getenv('DB_NAME') ?: 'ClinicaSalud';
                     $user = getenv('DB_USER') ?: 'postgres';
                     $password = getenv('DB_PASSWORD') ?: 'root1234';
                 } else {
-                    // Producción Render (ajusta estas variables si quieres)
                     $host = getenv('DB_HOST') ?: 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
                     $port = getenv('DB_PORT') ?: '5432';
                     $dbname = getenv('DB_NAME') ?: 'clinicasalud';
