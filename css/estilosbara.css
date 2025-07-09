@@ -1,0 +1,253 @@
+
+
+/* Hero: fondo con imagen original */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: url('../imgs/EJEMPLO.png') no-repeat center/cover;
+}
+
+/* Capa psicodélica animada sobre la imagen */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(60deg,
+    rgba(255,0,150,0.25),
+    rgba(0,200,255,0.25),
+    rgba(255,255,0,0.25),
+    rgba(150,0,255,0.25)
+  );
+  background-size: 400% 400%;
+  mix-blend-mode: overlay;
+  animation: hueShift var(--hue-duration) ease infinite;
+  pointer-events: none;
+}
+
+@keyframes hueShift {
+  0%   { filter: hue-rotate(0deg); }
+  50%  { filter: hue-rotate(180deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Contenido por encima */
+.hero .container {
+  position: relative;
+  z-index: 1;
+  color: #FFF3E0;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+}
+
+/* Tipografía sólida y legible */
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #FFF3E0; /* color uniforme */
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #FFF3E0;
+}
+
+/* Botón con ligero neón */
+.hero .btn {
+  background-color: rgba(255,112,67, 0.8);
+  border: 2px solid rgba(255,112,67, 1);
+  color: #fff;
+  padding: .75rem 1.5rem;
+  border-radius: .5rem;
+  box-shadow: 0 0 10px rgba(255,112,67,0.7);
+  transition: box-shadow .3s;
+}
+
+.hero .btn:hover {
+  box-shadow: 0 0 20px rgba(255,112,67,1);
+}
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FFFFFF;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Barra de Navegación */
+.navbar {
+  padding: 1rem 0;
+  background-color: #66BB6A !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+  color: #FCE4EC !important;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #880E4F !important;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  background: url('../imgs/EJEMPLO.png') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(1.1) contrast(1.05);
+  text-align: center;
+}
+
+.hero h1,
+.hero p {
+  color: #FFF3E0;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero .btn {
+  background-color: #FF7043;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero .btn:hover {
+  background-color: #E64A19;
+}
+
+section {
+  padding: 4rem 1rem;
+  background-color: #FFF3E0;
+  text-align: center;
+}
+
+section#servicios {
+  background-color: #FBE9E7;
+}
+
+section h2 {
+  color: #BF360C;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+section p {
+  color: #5D4037;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: #D84315;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  color: #4E342E;
+}
+
+#testimonioCarousel .carousel-inner {
+  background-color: #FFF8E1;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#testimonioCarousel .blockquote p {
+  font-size: 1.2rem;
+  color: #BF360C;
+  font-style: italic;
+}
+
+#contacto {
+  background-color: #66BB6A;
+  color: #FFF;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.contacto-titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+.contacto-linea {
+  width: 60px;
+  height: 3px;
+  background-color: #FFF;
+  margin: 0 auto 2rem auto;
+}
+
+.contacto-info {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.servicios-fondo {
+  background-image: url('../imgs/EJEMPLO.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem 1rem;
+  color: #fff;
+  text-align: center;
+}
+.hero {
+  position: relative;
+  overflow: hidden; 
+}
+
+#particles-js {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; 
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+

@@ -1,0 +1,119 @@
+body {
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formulario-login {
+  max-width: 420px;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-login .card-header {
+  background-color: #66BB6A;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.formulario-login .card-header h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.btn-lg {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: white;
+}
+
+a {
+  color: #0069d9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+/* Fondo general con gradiente */
+body {
+  background: linear-gradient(to right, #e3f2fd, #ffffff);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor del formulario de crear cuenta */
+.formulario-cuenta {
+  max-width: 420px;
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Evita que sobresalga contenido */
+}
+
+/* Encabezado con color vivo y letras blancas */
+.formulario-cuenta .card-header {
+  background-color: #66BB6A;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.formulario-cuenta .card-header h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Botones grandes y estilizados */
+.btn-lg {
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Hover de botón paciente */
+.btn-outline-primary:hover {
+  background-color: #0069d9;
+  color: white;
+}
+
+/* Hover de botón doctor */
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: white;
+}
+
+/* Enlace debajo del formulario */
+a {
+  color: #0069d9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Texto secundario para instrucciones */
+.text-secondary {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Mejora del padding en el cuerpo de la tarjeta */
+.card-body {
+  padding: 2rem;
+}
+
+

@@ -1,0 +1,137 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #FFFFFF; /* fondo blanco puro */
+  color: #333333; /* texto oscuro neutro */
+}
+
+.navbar {
+  padding: 1rem 0;
+  background-color: #66BB6A !important; 
+}
+
+.nav-link {
+  color: #FCE4EC !important; /* rosa muy pálido */
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+.nav-link:hover {
+  color: #880E4F !important; /* rosa oscuro al pasar */
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  background: url('../imgs/EJEMPLO.png') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(1.15) contrast(1.1);
+}
+
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #FFF3E0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+.hero p {
+  font-size: 1.5rem;
+  color: #FFF3E0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+.hero .btn {
+  background-color: #FF7043; 
+  border: none;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.hero .btn:hover {
+  background-color: #E64A19; 
+}
+
+
+section {
+  padding: 4rem 0;
+  background-color: #FFF3E0;
+}
+section#servicios {
+  background-color: #FBE9E7; 
+}
+section h2 {
+  color: #BF360C; /* rojo anaranjado */
+  margin-bottom: 2rem;
+}
+section p {
+  color: #5D4037; /* marrón medio */
+  line-height: 1.6;
+}
+
+/* Tarjetas */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card-title {
+  color: #D84315; /* rojo anaranjado oscuro */
+}
+.card-text {
+  color: #4E342E; /* marrón oscuro */
+}
+
+/* Testimonios Carousel */
+#testimonioCarousel .carousel-inner {
+  background-color: #FFF8E1; /* amarillo pálido */
+  padding: 2rem;
+  border-radius: 1rem;
+}
+#testimonioCarousel .blockquote p {
+  font-size: 1.2rem;
+  color: #BF360C; /* rojo anaranjado */
+}
+
+/* Contacto */
+#contacto {
+  background-color:  #66BB6A; /* melocotón suave */
+  color: #BF360C;
+}
+
+.contacto-seccion {
+  background-color: #FFF3F3;
+  color: #B71C1C;
+  padding: 3rem 1rem;
+}
+
+.contacto-titulo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #D32F2F;
+  margin-bottom: 1rem;
+}
+
+.contacto-linea {
+  width: 60px;
+  border-top: 3px solid  #66BB6A;
+  margin: 0 auto 2rem auto;
+}
+
+.contacto-info {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.servicios-fondo {
+  background-image: url('/imgs/EJEMPLO.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 4rem 1rem;
+  color: #ffffff; /* Ajusta si tu imagen es oscura */
+}
+

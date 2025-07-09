@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro de Paciente</title>
+  <link rel="stylesheet" href="css/RegistroPaciente.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>Registro de Paciente</h2>
+    <form id="formularioRegistroPaciente" action="registro-exitoso.html" method="post">
+      
+      <label for="txtNombre">Nombre completo:</label>
+      <input type="text" id="txtNombre" name="nombre" required autocomplete="name" />
+
+      <label for="txtEmail">Correo electrónico:</label>
+      <input type="email" id="txtEmail" name="correo" required autocomplete="email" />
+
+      <label for="txtGenero">Género:</label>
+      <select id="txtGenero" name="genero" required>
+        <option value="">Seleccione una opción</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Otro">Otro</option>
+      </select>
+
+      <label for="txtPassword">Contraseña:</label>
+      <input type="password" id="txtPassword" name="contrasena" required autocomplete="new-password" />
+
+      <label for="txtTelefono">Teléfono:</label>
+      <input type="tel" id="txtTelefono" name="telefono" required pattern="[0-9]{10}" placeholder="10 dígitos" />
+
+      <label for="txtDireccion">Dirección:</label>
+      <textarea id="txtDireccion" name="direccion" rows="3" required></textarea>
+
+      <label for="txtEdad">Edad:</label>
+      <input type="number" id="txtEdad" name="edad" required min="0" max="120" />
+
+      <input type="submit" value="Crear cuenta" />
+    </form>
+
+    <p class="volver"><a href="CrearCuenta.html">← Volver a selección de rol</a></p>
+  </div>
+
+  <script src="../js/PacienteRegistrado.js"></script>
+</body>
+</html>

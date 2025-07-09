@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ver Pacientes - Panel Doctor</title>
+  <!-- Enlace correcto al CSS de pacientes -->
+  <link rel="stylesheet" href="css/pacientes.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Pacientes Registrados</h1>
+    <table class="tabla-pacientes">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Género</th>
+          <th>Contacto</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>35</td>
+          <td>Masculino</td>
+          <td>juan.perez@mail.com</td>
+          <td>
+            <a href="editar-paciente.html" class="btn editar">Editar</a>
+            <a href="#" class="btn eliminar">Eliminar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>María López</td>
+          <td>28</td>
+          <td>Femenino</td>
+          <td>maria.lopez@mail.com</td>
+          <td>
+            <a href="editar-paciente.html" class="btn editar">Editar</a>
+            <a href="#" class="btn eliminar">Eliminar</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="MenuDoctores.html" class="volver">← Volver al Panel</a>
+  </div>
+</body>
+</html>

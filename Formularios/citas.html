@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ver Citas - Panel Doctor</title>
+  <link rel="stylesheet" href="css/citas.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Citas Programadas</h1>
+    <table class="tabla-citas">
+      <thead>
+        <tr>
+          <th>Paciente</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Motivo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Juan Pérez</td>
+          <td>2025-04-30</td>
+          <td>10:00</td>
+          <td>Dolor de cabeza</td>
+          <td>
+            <a href="editar-cita.html" class="btn editar">Editar</a>
+            <a href="#" class="btn eliminar">Eliminar</a>
+          </td>
+        </tr>
+        <tr>
+          <td>María Gómez</td>
+          <td>2025-05-01</td>
+          <td>14:30</td>
+          <td>Chequeo general</td>
+          <td>
+            <a href="editar-cita.html" class="btn editar">Editar</a>
+            <a href="#" class="btn eliminar">Eliminar</a>
+          </td>
+        </tr>
+        <!-- Puedes duplicar estas filas según sea necesario -->
+      </tbody>
+    </table>
+    <a href="MenuDoctores.html" class="volver">← Volver al Panel</a>
+  </div>
+</body>
+</html>

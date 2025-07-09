@@ -1,0 +1,103 @@
+/* Reset y fuente base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  }
+  
+  /* Fondo con gradiente profesional */
+  body {
+    background: linear-gradient(135deg, #89f7fe, #66a6ff); /* colores consistentes con paciente y doctor :contentReference[oaicite:2]{index=2} */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  /* Contenedor del formulario */
+  .form-wrapper {
+    background: #fff; /* blanco para contraste y legibilidad :contentReference[oaicite:3]{index=3} */
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* sombra suave para elevar el formulario :contentReference[oaicite:4]{index=4} */
+    width: 100%;
+    max-width: 460px;
+  }
+  
+  /* Título */
+  .form-wrapper h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #004a7c; /* mismo azul del dashboard :contentReference[oaicite:5]{index=5} */
+  }
+  
+  /* Etiquetas y campos */
+  label {
+    display: block;
+    margin: 0.75rem 0 0.25rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc; /* borde neutro :contentReference[oaicite:6]{index=6} */
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #66a6ff; /* resalta con gradiente secundario :contentReference[oaicite:7]{index=7} */
+    outline: none;
+  }
+  
+  /* Botón de envío */
+  input[type="submit"] {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #004a7c; /* azul principal :contentReference[oaicite:8]{index=8} */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #063d6b; /* hover consistente con otros botones :contentReference[oaicite:9]{index=9} */
+  }
+  
+  /* Enlace de retorno */
+  .back-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .back-link a {
+    color: #004a7c;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive: ajustar padding en móviles */
+  @media (max-width: 500px) {
+    .form-wrapper {
+      padding: 1.5rem;
+    }
+  }
+  

@@ -1,0 +1,13 @@
+.header {
+  /* Degradado lineal oscuro */
+  background: linear-gradient(to right, #2d2d2d, #4c6870);
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.navbar-nav .nav-link {
+  color: #e0e0e0;
+  transition: color 0.2s ease;
+}
+.navbar-nav .nav-link:hover {
+  color: #ffffff;
+}

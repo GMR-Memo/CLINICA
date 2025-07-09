@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crear Cita - Clínica</title>
+  <link rel="stylesheet" href="css/crearcita.css" />
+</head>
+<body>
+  <div class="form-wrapper">
+    <h2>Agendar Nueva Cita</h2>
+    <form id="formCita" action="cita-exitosa.html" method="post" novalidate>
+      <label for="paciente">Paciente</label>
+      <select id="paciente" name="paciente" required>
+        <option value="">Selecciona paciente</option>
+        <option value="juan_perez">Juan Pérez</option>
+        <option value="maria_lopez">María López</option>
+      </select>
+
+      <label for="fecha">Fecha</label>
+      <input type="date" id="fecha" name="fecha" required />
+
+      <label for="hora">Hora</label>
+      <input type="time" id="hora" name="hora" required />
+
+      <label for="motivo">Motivo de Consulta</label>
+      <textarea id="motivo" name="motivo" rows="3" placeholder="Describa brevemente..." required></textarea>
+
+      <input type="submit" value="Guardar Cita" />
+    </form>
+    <p class="back-link"><a href="MenuDoctores.html">← Volver al Panel</a></p>
+  </div>
+
+  <script src="js/crear-cita.js"></script>
+</body>
+</html>

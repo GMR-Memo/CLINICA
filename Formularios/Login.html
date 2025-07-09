@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Iniciar Sesión - Clínica de Salud</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/estiloslogins.css">
+</head>
+<body>
+
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card formulario-login">
+      <div class="card-header text-white text-center py-3">
+        <h3>Iniciar Sesión</h3>
+      </div>
+      <div class="card-body px-4">
+        <div class="text-center mb-3">
+          <label class="form-label fw-semibold">Tipo de usuario:</label>
+          <div class="btn-group d-flex justify-content-center" role="group">
+            <input type="radio" class="btn-check" name="tipoUsuario" id="paciente" value="paciente" checked>
+            <label class="btn btn-outline-primary" for="paciente">Paciente</label>
+
+            <input type="radio" class="btn-check" name="tipoUsuario" id="doctor" value="doctor">
+            <label class="btn btn-outline-success" for="doctor">Doctor</label>
+          </div>
+        </div>
+
+        <form id="formLogin" class="d-grid gap-3">
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" class="form-control" id="correo" required placeholder="ejemplo@correo.com">
+          </div>
+
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" required placeholder="Ingresa tu contraseña">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg mt-3">Iniciar Sesión</button>
+        </form>
+
+        <p class="text-center mt-4 text-muted">
+          ¿No tienes una cuenta? <a href="CrearCuenta.html">Crear una cuenta</a>
+        </p>
+        <p class="text-danger text-center mt-2" id="mensajeError"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/login.js"></script>
+
+</body>
+</html>

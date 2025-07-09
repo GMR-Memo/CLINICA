@@ -1,0 +1,100 @@
+/* Fondo psicodélico animado */
+body.bg-psico {
+  background: linear-gradient(135deg, #1e002e, #4b0072, #0d001a, #240052);
+  background-size: 600% 600%;
+  animation: fondoTrippy 25s ease infinite;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+@keyframes fondoTrippy {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Título principal */
+.titulo-psico {
+  font-size: 3.5rem;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+  animation: pulsoNeon 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulsoNeon {
+  0% { text-shadow: 0 0 5px #ff00ff; }
+  100% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
+}
+
+/* Subtítulo */
+.subtitulo-psico {
+  font-size: 1.5rem;
+  color: #ccf0ff;
+  text-align: center;
+  text-shadow: 0 0 8px #66faff;
+}
+
+/* Botón de regreso */
+.btn-volver {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #290050;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 0 15px #00ffff;
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.btn-volver:hover {
+  background: #5500aa;
+  transform: scale(1.05);
+}
+
+/* Carrusel psicodélico */
+.sombra-psico {
+  box-shadow: 0 0 25px rgba(255, 0, 255, 0.4);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* Sección y títulos */
+.titulo-seccion {
+  font-size: 1.8rem;
+  color: #ffd6ff;
+  text-shadow: 0 0 6px #ff00cc;
+  margin-bottom: 1rem;
+}
+
+/* Lista psicodélica */
+.list-group-psico .list-group-item {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.list-group-psico .list-group-item:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.03);
+}
+
+/* Footer */
+.footer-psico {
+  background: rgba(0, 0, 0, 0.4);
+  color: #eee;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+}

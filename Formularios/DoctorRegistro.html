@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro de Doctor</title>
+  <link rel="stylesheet" href="css/RegistroDoctor.css" />
+</head>
+<body>
+  <div class="form-container">
+      <h2>Registro de Doctor</h2>
+    <form id="formularioRegistroDoctor"  method="post" >
+      
+     <label for="txtNombre">Nombre completo:</label>
+<input type="text" id="txtNombre" name="nombre" required autocomplete="name" />
+
+<label for="txtEmail">Correo electrónico:</label>
+<input type="email" id="txtEmail" name="correo" required autocomplete="email" />
+
+<label for="txtPassword">Contraseña:</label>
+<input type="password" id="txtPassword" name="contrasena" required autocomplete="new-password" />
+
+<label for="txtCedula">Cédula profesional:</label>
+<input type="text" id="txtCedula" name="cedula" required />
+
+<label for="txtEspecialidad">Especialidad:</label>
+<input type="text" id="txtEspecialidad" name="especialidad" required />
+
+<label for="txtTelefono">Teléfono de contacto:</label>
+<input type="tel" id="txtTelefono" name="telefono" required pattern="[0-9]{10}" placeholder="10 dígitos" />
+
+<label for="txtDireccion">Dirección de consulta:</label>
+<textarea id="txtDireccion" name="direccion" rows="3" required></textarea>
+
+      <input type="submit" value="Crear cuenta" />
+    </form>
+
+    <p class="volver"><a href="CrearCuenta.html">← Volver a selección de rol</a></p>
+  </div>
+
+  <script src="../js/DoctorRegistrado.js"></script>
+</body>
+</html>

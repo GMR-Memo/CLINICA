@@ -1,0 +1,112 @@
+/* Reset básico y fuente */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+  }
+  
+  /* Fondo con gradiente suave, tonos relajantes para salud mental */
+  body {
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec); /* colores inspirados en entornos de salud mental :contentReference[oaicite:3]{index=3} */
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* sombra suave para elevar visualmente la tarjeta :contentReference[oaicite:4]{index=4} */
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  /* Título */
+  h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #102a43; /* contraste alto para accesibilidad :contentReference[oaicite:5]{index=5} */
+  }
+  
+  /* Tabla de pacientes */
+  .tabla-pacientes {
+    width: 100%;
+    border-collapse: collapse; /* elimina espacios entre celdas :contentReference[oaicite:6]{index=6} */
+    margin-bottom: 1.5rem;
+  }
+  
+  .tabla-pacientes th,
+  .tabla-pacientes td {
+    border: 1px solid #bcccdc;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  
+  .tabla-pacientes th {
+    background-color: #334e68; /* encabezado destacado :contentReference[oaicite:7]{index=7} */
+    color: #fff;
+  }
+  
+  .tabla-pacientes tr:nth-child(even) {
+    background-color: #f0f4f8; /* filas alternas para mejorar legibilidad :contentReference[oaicite:8]{index=8} */
+  }
+  
+  /* Botones de acción */
+  .btn {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s; /* feedback en hover :contentReference[oaicite:9]{index=9} */
+  }
+  
+  .editar {
+    background-color: #2d6a4f; /* verde tranquilo :contentReference[oaicite:10]{index=10} */
+  }
+  
+  .editar:hover {
+    background-color: #1b4332;
+  }
+  
+  .eliminar {
+    background-color: #b02a37; /* rojo suave :contentReference[oaicite:11]{index=11} */
+    margin-left: 0.5rem;
+  }
+  
+  .eliminar:hover {
+    background-color: #7f1d28;
+  }
+  
+  /* Enlace de retorno */
+  .volver {
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: #334e68;
+    font-weight: 500;
+  }
+  
+  .volver:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive: ajuste de tabla en pantallas pequeñas */
+  @media (max-width: 600px) {
+    .tabla-pacientes th,
+    .tabla-pacientes td {
+      font-size: 0.85rem;
+      padding: 0.5rem;
+    }
+  
+    h1 {
+      font-size: 1.3rem;
+    }
+  }
+  

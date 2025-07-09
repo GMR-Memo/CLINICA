@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(120deg, #f093fb, #f5576c);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .form-container {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  form label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+  }
+  
+  form input,
+  form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+  }
+  
+  form input:focus,
+  form select:focus {
+    border-color: #f5576c;
+    outline: none;
+  }
+  
+  form input[type="submit"] {
+    background-color: #f5576c;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form input[type="submit"]:hover {
+    background-color: #d33f50;
+  }
+  
+  .volver {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .volver a {
+    color: #f5576c;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .volver a:hover {
+    text-decoration: underline;
+  }
+
+  body {
+    background-color: #f0f8ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .mensaje-container {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mensaje-container h1 {
+    color: #28a745;
+    margin-bottom: 20px;
+  }
+  
+  .mensaje-container p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  
