@@ -11,7 +11,7 @@ class Conexion {
 
                 if ($entorno === 'local') {
                     $host = getenv('DB_HOST') ?: 'host.docker.internal';
-                    $port = getenv('DB_PORT') ?: '5432';
+                    $port = getenv('DB_PORT') ?: '5433';
                     $dbname = getenv('DB_NAME') ?: 'ClinicaSalud';
                     $user = getenv('DB_USER') ?: 'postgres';
                     $password = getenv('DB_PASSWORD') ?: 'root1234';
