@@ -1,16 +1,18 @@
-# Usamos PHP 8.1 con Apache
 FROM php:8.1-apache
 
-# Activamos mod_rewrite para URLs amigables
+# Activar mod_rewrite de Apache
 RUN a2enmod rewrite
 
-# Instalamos extensiones necesarias para PostgreSQL
-RUN docker-php-ext-install pdo pdo_pgsql
+# Instalar dependencias necesarias para compilar pdo_pgsql
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    && docker-php-ext-install pdo pdo_pgsql \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copiamos el proyecto al contenedor
+# Copiar el código al contenedor
 COPY . /var/www/html/
 
-# Cambiamos permisos para Apache
+# Cambiar permisos para Apache
 RUN chown -R www-data:www-data /var/www/html
 
 # Variables de entorno para conexión local (puerto 5433)
@@ -21,5 +23,5 @@ ENV DB_NAME=ClinicaSalud
 ENV DB_USER=postgres
 ENV DB_PASSWORD=root1234
 
-# Exponemos puerto 80 para Apache
+# Exponer puerto 80 para Apache
 EXPOSE 80
