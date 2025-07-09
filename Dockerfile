@@ -18,7 +18,7 @@ RUN chown -R www-data:www-data /var/www/html
 # Variables de entorno para conexión local (puerto 5433)
 ENV APP_ENV=production
 #ENV DB_HOST=host.docker.internal
-#ENV DB_PORT=5433
+ENV DB_PORT=5432
 #ENV DB_NAME=ClinicaSalud
 #ENV DB_USER=postgres
 #ENV DB_PASSWORD=root1234
