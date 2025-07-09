@@ -7,28 +7,25 @@ class Conexion {
     public static function conectar() {
         if (self::$conexion === null) {
             try {
-                $entorno = getenv('APP_ENV') ?: 'local';
+                // Leer desde variables de entorno proporcionadas por Render
+                $host = getenv('DB_HOST');
+                $port = getenv('DB_PORT') ?: '5432';
+                $dbname = getenv('DB_NAME');
+                $user = getenv('DB_USER');
+                $password = getenv('DB_PASSWORD');
 
-                if ($entorno === 'local') {
-                    $host = getenv('DB_HOST') ?: 'host.docker.internal';
-                    $port = getenv('DB_PORT') ?: '5433';
-                    $dbname = getenv('DB_NAME') ?: 'ClinicaSalud';
-                    $user = getenv('DB_USER') ?: 'postgres';
-                    $password = getenv('DB_PASSWORD') ?: 'root1234';
-                } else {
-                    $host = getenv('DB_HOST') ?: 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
-                    $port = getenv('DB_PORT') ?: '5432';
-                    $dbname = getenv('DB_NAME') ?: 'clinicasalud';
-                    $user = getenv('DB_USER') ?: 'memo';
-                    $password = getenv('DB_PASSWORD') ?: 'cE8pCJJ3zUIRViynRXwIUVx8vLjgrcmj';
+                if (!$host || !$dbname || !$user || !$password) {
+                    throw new Exception("Faltan variables de entorno para la conexión a la base de datos.");
                 }
 
                 $dsn = "pgsql:host=$host;port=$port;dbname=$dbname";
                 self::$conexion = new PDO($dsn, $user, $password);
                 self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 exit('Error de conexión: ' . $e->getMessage());
+            } catch (PDOException $e) {
+                exit('Error de conexión PDO: ' . $e->getMessage());
             }
         }
         return self::$conexion;
