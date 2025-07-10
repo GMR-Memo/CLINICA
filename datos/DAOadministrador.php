@@ -99,6 +99,7 @@ class AdministradorDAO {
         }
         return new Administrador(
             (int)$fila['id'],
+            '',       
             $fila['correo'],
             $fila['contrasena']
         );
