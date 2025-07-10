@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once __DIR__ . '/../modelos/Doctor.php';
-require_once __DIR__ . '/../modelos/Cita.php';
-require_once __DIR__ . '/../datos/DAOcitas.php';
-require_once __DIR__ . '/../datos/Conexion.php';
+require_once  '../modelos/Doctor.php';
+require_once  '../modelos/Cita.php';
+require_once  '../datos/DAOcitas.php';
+require_once  '../datos/Conexion.php';
 
 use Modelos\Cita;
 

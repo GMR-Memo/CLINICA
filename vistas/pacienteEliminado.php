@@ -17,5 +17,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-header('Location: ListaPacientes.php');
+header('Location: ListaPacientesDoc.php');
 exit;
