@@ -1,5 +1,5 @@
 <?php
-require_once  '../Conexion.php';
+require_once  '/Conexion.php';
 require_once  '../modelos/Cita.php';
 
 use Modelos\Cita;
