@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../datos/DAOUsuario.php';
-require_once __DIR__ . '/../datos/DAOdoctores.php';
-require_once __DIR__ . '/../datos/DAOpacientes.php';
-require_once __DIR__ . '/../datos/DAOadministrador.php'; // NUEVO
-require_once __DIR__ . '/../modelos/Doctor.php';
-require_once __DIR__ . '/../modelos/Paciente.php';
-require_once __DIR__ . '/../modelos/Administrador.php'; // NUEVO
+require_once  '../datos/DAOUsuario.php';
+require_once  '../datos/DAOdoctores.php';
+require_once  '../datos/DAOpacientes.php';
+require_once  '../datos/DAOadministrador.php'; // NUEVO
+require_once  '../modelos/Doctor.php';
+require_once  '../modelos/Paciente.php';
+require_once  '../modelos/Administrador.php'; // NUEVO
 
 $error = '';
 
