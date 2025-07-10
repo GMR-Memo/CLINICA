@@ -2,7 +2,7 @@
 /**
  * Clase para manejar la conexión a PostgreSQL mediante PDO
  */
-class Conexion {
+class ConexionH {
     private static $servidor  = 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
     private static $puerto    = '5432';
     private static $bd        = 'clinicasalud';
