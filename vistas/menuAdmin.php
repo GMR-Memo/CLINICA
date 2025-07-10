@@ -34,7 +34,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'admin') {
 
     <main class="content flex-fill p-4">
       <h1 class="mb-4">Bienvenido, <span class="text-success"><?php echo $_SESSION['usuario_nombre']; ?></span></h1>
-      <p>Desde este panel puedes gestionar doctores, pacientes, citas, configuraciones y visualizar reportes del sistema.</p>
+      <p>Desde este panel puedes gestionar doctores, pacientes, citas, configuraciones del sistema.</p>
     </main>
   </div>
 </body>
