@@ -1,5 +1,5 @@
 <?php
-class Conexion {
+class ConexionHost {
     private static $conexion = null;
 
     private function __construct() {}
