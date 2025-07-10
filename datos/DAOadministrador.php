@@ -35,23 +35,22 @@ class AdministradorDAO {
         return $admin;
     }
 
-    public function obtenerPorId(int $id): ?Administrador {
-        $sql = "SELECT u.id, a.nombre, u.correo
-                FROM usuarios u
-                JOIN administradores a ON u.id = a.id
-                WHERE u.id = :id AND u.rol = 'administrador'";
-        $stmt = $this->con->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        $fila = $stmt->fetch(\PDO::FETCH_ASSOC);
-        if (!$fila) return null;
+  public function obtenerPorId(int $id): ?Administrador {
+    $sql = "SELECT id, correo 
+            FROM administradores 
+            WHERE id = :id";
+    $stmt = $this->con->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    $fila = $stmt->fetch(\PDO::FETCH_ASSOC);
+    if (!$fila) return null;
 
-        return new Administrador(
-            (int)$fila['id'],
-            $fila['nombre'],
-            $fila['correo'],
-            '' // no devolvemos la contraseña
-        );
-    }
+    return new Administrador(
+        (int)$fila['id'],
+        '',               // ya no tienes nombre
+        $fila['correo'],
+        ''                // no devolvemos la contraseña
+    );
+}   
 
     // (Opcional) actualizar y eliminar...
 }
