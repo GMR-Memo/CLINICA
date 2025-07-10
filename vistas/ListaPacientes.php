@@ -21,7 +21,7 @@ if (isset($_SESSION['msg'])) {
 
   <div class="mb-3 d-flex justify-content-between">
     <a href="PacienteRegistro.php" class="btn btn-success">Registrar Nuevo Paciente</a>
-    <a href="menuDoc.php" class="btn btn-secondary">Regresar</a>
+    <a href="menuAdmin.php" class="btn btn-secondary">Regresar</a>
   </div>
 
   <table class="table table-bordered table-hover">
@@ -45,7 +45,7 @@ if (isset($_SESSION['msg'])) {
           <td><?= htmlspecialchars($pac->telefono) ?></td>
           <td>
             <a href="PacienteRegistro.php?id=<?= $pac->id ?>" class="btn btn-warning btn-sm">Editar</a>
-            <form method="post" action="pacienteEliminado.php" class="d-inline">
+            <form method="post" action="pacienteEliminadoA.php" class="d-inline">
               <input type="hidden" name="id" value="<?= $pac->id ?>">
               <button class="btn btn-danger btn-sm" onclick="return confirm('¿Desea eliminar este paciente?')">Eliminar</button>
             </form>
