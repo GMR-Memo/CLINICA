@@ -17,7 +17,7 @@ if (isset($_SESSION['msg'])) {
   <h2>Lista de Doctores</h2>
   <a href="DoctorRegistro.php" class="btn btn-success mb-3">Registrar Nuevo</a>
   <br>
-    <a href="menuAdmin.php" class="btn btn-secondary">Regresar</a>
+    <a href="menuDoc.php" class="btn btn-secondary">Regresar</a>
 
   <table class="table table-bordered table-hover">
     <thead class="table-light">
