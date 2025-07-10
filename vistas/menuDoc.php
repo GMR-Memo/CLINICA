@@ -10,7 +10,7 @@ session_start();
   <title>Panel Doctor</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="/cssForms/menuDoctores.css" />
+  <link rel="stylesheet" href="/cssForms/MenuDoctores.css" />
 
 </head>
 <body>
@@ -23,7 +23,7 @@ session_start();
       <nav class="nav flex-column">
         <div class="nav-section">Citas</div>
         <a href="crearCita.php" class="nav-item"><i class="fas fa-calendar-plus me-2"></i>Crear Cita</a>
-        <a href="listacitasAdmin.php" class="nav-item"><i class="fas fa-calendar-alt me-2"></i>Ver/Editar Citas</a>
+        <a href="ListaCitas.php" class="nav-item"><i class="fas fa-calendar-alt me-2"></i>Ver/Editar Citas</a>
 
         <div class="nav-section">Pacientes</div>
         <a href="PacienteRegistroD.php" class="nav-item"><i class="fas fa-user-plus me-2"></i>Agregar Paciente</a>
