@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 require_once '../datos/DAOUsuario.php';
 require_once '../datos/DAOdoctores.php';
 require_once '../datos/DAOpacientes.php';
@@ -16,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo     = trim($_POST['correo']   ?? '');
     $contrasena = $_POST['contrasena']    ?? '';
 
-    // 1. Validaciones básicas
     if (! in_array($rol, ['paciente','doctor','administrador'])) {
         $error = 'Seleccione un tipo de usuario válido.';
     } elseif (! filter_var($correo, FILTER_VALIDATE_EMAIL)) {
@@ -24,61 +22,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($contrasena) < 6) {
         $error = 'La contraseña debe tener al menos 6 caracteres.';
     } else {
-        // 2. Intentamos autenticar en la tabla usuarios
         $daoUser     = new DAOUsuario();
-        $usuarioAuth = $daoUser->autenticar($correo, $contrasena, $rol);
+        $usuarioAuth = $daoUser->autenticar($correo, $rol);
 
         if ($usuarioAuth) {
-            // 3. Carga datos según el rol y comprueba existencia
-            if ($rol === 'paciente') {
-                $daoPac  = new PacienteDAO();
-                $usuario = $daoPac->obtenerPorId($usuarioAuth->id);
+
+            if (password_verify($contrasena, $usuarioAuth->contrasena)) {
+                // según rol, cargamos perfil y redirigimos
+                switch ($rol) {
+                    case 'paciente':
+                        $dao      = new PacienteDAO();
+                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino  = 'menuPacientes.php';
+                        break;
+                    case 'doctor':
+                        $dao      = new DoctorDAO();
+                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino  = 'menuDoc.php';
+                        break;
+                    case 'administrador':
+                        $dao      = new AdministradorDAO();
+                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino  = 'menuAdmin.php';
+                        break;
+                }
 
                 if (! $usuario) {
-                    $error = 'No se encontró el perfil de paciente.';
-                } elseif (password_verify($contrasena, $usuarioAuth->contrasena ?? $contrasena)) {
-                    $_SESSION['usuario_id']     = $usuario->id;
-                    $_SESSION['usuario_rol']    = 'paciente';
-                    $_SESSION['usuario_nombre'] = $usuario->nombre;
-                    header('Location: menuPacientes.php');
-                    exit;
+                    $error = "No se encontró el perfil de $rol.";
                 } else {
-                    $error = 'Contraseña incorrecta.';
-                }
-            }
-
-            if ($rol === 'doctor') {
-                $daoDoc  = new DoctorDAO();
-                $usuario = $daoDoc->obtenerPorId($usuarioAuth->id);
-
-                if (! $usuario) {
-                    $error = 'No se encontró el perfil de doctor.';
-                } elseif (password_verify($contrasena, $usuarioAuth->contrasena ?? $contrasena)) {
                     $_SESSION['usuario_id']     = $usuario->id;
-                    $_SESSION['usuario_rol']    = 'doctor';
+                    $_SESSION['usuario_rol']    = $rol;
                     $_SESSION['usuario_nombre'] = $usuario->nombre;
-                    header('Location: menuDoc.php');
+                    header("Location: $destino");
                     exit;
-                } else {
-                    $error = 'Contraseña incorrecta.';
                 }
-            }
-
-            if ($rol === 'administrador') {
-                $daoAdmin = new AdministradorDAO();
-                $usuario  = $daoAdmin->obtenerPorId($usuarioAuth->id);
-
-                if (! $usuario) {
-                    $error = 'No se encontró el perfil de administrador.';
-                } elseif (password_verify($contrasena, $usuarioAuth->contrasena ?? $contrasena)) {
-                    $_SESSION['usuario_id']     = $usuario->id;
-                    $_SESSION['usuario_rol']    = 'administrador';
-                    $_SESSION['usuario_nombre'] = $usuario->nombre;
-                    header('Location: menuAdmin.php');
-                    exit;
-                } else {
-                    $error = 'Contraseña incorrecta.';
-                }
+            } else {
+                $error = 'Contraseña incorrecta.';
             }
         } else {
             $error = 'Correo o contraseña incorrectos.';
