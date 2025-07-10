@@ -3,6 +3,7 @@
 
 require_once '../Conexion.php';
 
+
 class DAOUsuario {
     private \PDO $con;
 
@@ -11,13 +12,13 @@ class DAOUsuario {
     }
 
     /**
-     * Busca en usuarios por correo+rol y devuelve el objeto usuario (incluye contrasena-hash) o false.
-     *
+     * Autentica al usuario por correo, contraseña y rol.
      * @param string $correo
-     * @param string $rol
-     * @return object|false
+     * @param string $contrasena
+     * @param string $rol         // "paciente", "doctor" o "administrador"
+     * @return object|null        // { id, correo, rol, contrasena(hash) } o null
      */
-    public function autenticar(string $correo, string $rol): object|false {
+    public function autenticar(string $correo, string $contrasena, string $rol): ?object {
         $sql = "
             SELECT *
             FROM usuarios
@@ -28,9 +29,12 @@ class DAOUsuario {
         $stmt = $this->con->prepare($sql);
         $stmt->execute([
             ':correo' => $correo,
-            ':rol'    => $rol
+            ':rol'    => $rol,
         ]);
-        $user = $stmt->fetch(\PDO::FETCH_OBJ);
-        return $user ?: false;
+        $usr = $stmt->fetch(\PDO::FETCH_OBJ);
+        if ($usr && password_verify($contrasena, $usr->contrasena)) {
+            return $usr;
+        }
+        return null;
     }
 }
