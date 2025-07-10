@@ -20,7 +20,7 @@ if (isset($_SESSION['msg'])) {
   <h2 class="mb-4">Lista de Pacientes</h2>
 
   <div class="mb-3 d-flex justify-content-between">
-    <a href="PacienteRegistro.php" class="btn btn-success">Registrar Nuevo Paciente</a>
+    <a href="PacienteRegistroA.php" class="btn btn-success">Registrar Nuevo Paciente</a>
     <a href="menuAdmin.php" class="btn btn-secondary">Regresar</a>
   </div>
 
