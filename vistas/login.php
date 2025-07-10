@@ -1,20 +1,24 @@
 <?php
+// Archivo: vistas/login.php
+
 session_start();
-require_once '../datos/DAOUsuario.php';
-require_once '../datos/DAOdoctores.php';
-require_once '../datos/DAOpacientes.php';
-require_once '../datos/DAOadministrador.php';
-require_once '../modelos/Doctor.php';
-require_once '../modelos/Paciente.php';
-require_once '../modelos/Administrador.php';
+
+require_once __DIR__ . '/../datos/DAOUsuario.php';
+require_once __DIR__ . '/../datos/DAOdoctores.php';
+require_once __DIR__ . '/../datos/DAOpacientes.php';
+require_once __DIR__ . '/../datos/DAOadministrador.php';
+require_once __DIR__ . '/../modelos/Doctor.php';
+require_once __DIR__ . '/../modelos/Paciente.php';
+require_once __DIR__ . '/../modelos/Administrador.php';
 
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $rol        = $_POST['tipoUsuario']   ?? '';
+    $rol        = $_POST['tipoUsuario'] ?? '';
     $correo     = trim($_POST['correo']   ?? '');
     $contrasena = $_POST['contrasena']    ?? '';
 
+    // 1. Validaciones básicas
     if (! in_array($rol, ['paciente','doctor','administrador'])) {
         $error = 'Seleccione un tipo de usuario válido.';
     } elseif (! filter_var($correo, FILTER_VALIDATE_EMAIL)) {
@@ -22,39 +26,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($contrasena) < 6) {
         $error = 'La contraseña debe tener al menos 6 caracteres.';
     } else {
+        // 2. Intentamos obtener el usuario (sin verificar aún la contraseña)
         $daoUser     = new DAOUsuario();
         $usuarioAuth = $daoUser->autenticar($correo, $rol);
 
-        if ($usuarioAuth) {
-
+        if ($usuarioAuth !== false) {
+            // 3. Verificamos la contraseña contra el hash que recuperamos
             if (password_verify($contrasena, $usuarioAuth->contrasena)) {
-                // según rol, cargamos perfil y redirigimos
+                // 4. Cargamos perfil y redirigimos según el rol
                 switch ($rol) {
                     case 'paciente':
-                        $dao      = new PacienteDAO();
-                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
-                        $destino  = 'menuPacientes.php';
+                        $dao     = new PacienteDAO();
+                        $perfil  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino = 'menuPacientes.php';
                         break;
                     case 'doctor':
-                        $dao      = new DoctorDAO();
-                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
-                        $destino  = 'menuDoc.php';
+                        $dao     = new DoctorDAO();
+                        $perfil  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino = 'menuDoc.php';
                         break;
-                    case 'administrador':
-                        $dao      = new AdministradorDAO();
-                        $usuario  = $dao->obtenerPorId($usuarioAuth->id);
-                        $destino  = 'menuAdmin.php';
-                        break;
+                    default: // administrador
+                        $dao     = new AdministradorDAO();
+                        $perfil  = $dao->obtenerPorId($usuarioAuth->id);
+                        $destino = 'menuAdmin.php';
                 }
 
-                if (! $usuario) {
-                    $error = "No se encontró el perfil de $rol.";
-                } else {
-                    $_SESSION['usuario_id']     = $usuario->id;
+                if ($perfil) {
+                    $_SESSION['usuario_id']     = $perfil->id;
                     $_SESSION['usuario_rol']    = $rol;
-                    $_SESSION['usuario_nombre'] = $usuario->nombre;
+                    $_SESSION['usuario_nombre'] = $perfil->nombre;
                     header("Location: $destino");
                     exit;
+                } else {
+                    $error = "No se encontró el perfil de $rol.";
                 }
             } else {
                 $error = 'Contraseña incorrecta.';
@@ -133,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div>
 
-  <script src="js/login.js"></script>
+  <script src="../js/login.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
