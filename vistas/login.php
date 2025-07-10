@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-require_once  '../datos/DAOUsuario.php';
-require_once  '../datos/DAOdoctores.php';
-require_once  '../datos/DAOpacientes.php';
-require_once  '../datos/DAOadministrador.php'; // NUEVO
-require_once  '../modelos/Doctor.php';
-require_once  '../modelos/Paciente.php';
-require_once  '../modelos/Administrador.php'; // NUEVO
+require_once '../datos/DAOUsuario.php';
+require_once '../datos/DAOdoctores.php';
+require_once '../datos/DAOpacientes.php';
+require_once '../datos/DAOadministrador.php';
+require_once '../modelos/Doctor.php';
+require_once '../modelos/Paciente.php';
+require_once '../modelos/Administrador.php';
 
 $error = '';
 
@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo     = trim($_POST['correo'] ?? '');
     $contrasena = $_POST['contrasena'] ?? '';
 
+    // 1. Validaciones básicas
     if (!in_array($rol, ['paciente', 'doctor', 'administrador'])) {
         $error = 'Seleccione un tipo de usuario válido.';
     } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
@@ -23,41 +24,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($contrasena) < 6) {
         $error = 'La contraseña debe tener al menos 6 caracteres.';
     } else {
-        $daoUser = new DAOUsuario();
-        $usuarioAuth = $daoUser->autenticar($correo, $contrasena, $rol);
+        // 2. Intentamos autenticar
+        $daoUser      = new DAOUsuario();
+        $usuarioAuth  = $daoUser->autenticar($correo, $contrasena, $rol);
 
         if ($usuarioAuth) {
+            // 3. Según el rol, obtenemos datos y redirigimos
             if ($rol === 'paciente') {
-                $daoPac = new PacienteDAO();
+                $daoPac  = new PacienteDAO();
                 $usuario = $daoPac->obtenerPorId($usuarioAuth->id);
-                $_SESSION['usuario_id'] = $usuario->id;
-                $_SESSION['usuario_rol'] = 'paciente';
+                $_SESSION['usuario_id']     = $usuario->id;
+                $_SESSION['usuario_rol']    = 'paciente';
                 $_SESSION['usuario_nombre'] = $usuario->nombre;
                 header('Location: menuPacientes.php');
-            } elseif ($rol === 'doctor') {
-                $daoDoc = new DoctorDAO();
+                exit;
+            }
+
+            if ($rol === 'doctor') {
+                $daoDoc  = new DoctorDAO();
                 $usuario = $daoDoc->obtenerPorId($usuarioAuth->id);
-                $_SESSION['usuario_id'] = $usuario->id;
-                $_SESSION['usuario_rol'] = 'doctor';
+                $_SESSION['usuario_id']     = $usuario->id;
+                $_SESSION['usuario_rol']    = 'doctor';
                 $_SESSION['usuario_nombre'] = $usuario->nombre;
                 header('Location: menuDoc.php');
-            } elseif ($rol === 'administrador') {
-                $daoAdmin = new AdministradorDAO();
-                $usuario = $daoAdmin->obtenerPorId($usuarioAuth->id);
-                $_SESSION['usuario_id'] = $usuario->id;
-                $_SESSION['usuario_rol'] = 'administrador';
-                $_SESSION['usuario_nombre'] = $usuario->nombre;
-                header('Location: menuAdmin.php');
+                exit;
             }
-            exit;
+
+            if ($rol === 'administrador') {
+                $daoAdmin = new AdministradorDAO();
+                $usuario  = $daoAdmin->obtenerPorId($usuarioAuth->id);
+                $_SESSION['usuario_id']     = $usuario->id;
+                $_SESSION['usuario_rol']    = 'administrador';
+                // Si no usas 'nombre' en admin, puedes usar correo:
+                $_SESSION['usuario_nombre'] = $usuario->nombre ?? $usuario->correo;
+                header('Location: menuAdmin.php');
+                exit;
+            }
         } else {
             $error = 'Correo o contraseña incorrectos.';
         }
     }
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -78,39 +86,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <?php endif; ?>
 
       <form method="post" id="formLogin" class="d-grid gap-3" novalidate>
-  <div class="text-center mb-3">
-    <label class="form-label fw-semibold">Tipo de usuario:</label>
-    <div class="btn-group d-flex justify-content-center" role="group">
-      <input type="radio" class="btn-check" name="tipoUsuario" id="paciente" value="paciente"
-             <?php if (!isset($_POST['tipoUsuario']) || $_POST['tipoUsuario'] === 'paciente') echo 'checked'; ?>>
-      <label class="btn btn-outline-primary" for="paciente">Paciente</label>
+        <div class="text-center mb-3">
+          <label class="form-label fw-semibold">Tipo de usuario:</label>
+          <div class="btn-group d-flex justify-content-center" role="group">
+            <input type="radio" class="btn-check" name="tipoUsuario" id="paciente" value="paciente"
+              <?php if (!isset($_POST['tipoUsuario']) || $_POST['tipoUsuario'] === 'paciente') echo 'checked'; ?>>
+            <label class="btn btn-outline-primary" for="paciente">Paciente</label>
 
-      <input type="radio" class="btn-check" name="tipoUsuario" id="doctor" value="doctor"
-             <?php if (isset($_POST['tipoUsuario']) && $_POST['tipoUsuario'] === 'doctor') echo 'checked'; ?>>
-      <label class="btn btn-outline-success" for="doctor">Doctor</label>
+            <input type="radio" class="btn-check" name="tipoUsuario" id="doctor" value="doctor"
+              <?php if (isset($_POST['tipoUsuario']) && $_POST['tipoUsuario'] === 'doctor') echo 'checked'; ?>>
+            <label class="btn btn-outline-success" for="doctor">Doctor</label>
 
-      <input type="radio" class="btn-check" name="tipoUsuario" id="administrador" value="administrador"
-             <?php if (isset($_POST['tipoUsuario']) && $_POST['tipoUsuario'] === 'admin') echo 'checked'; ?>>
-      <label class="btn btn-outline-warning" for="administrador">Admin</label>
-    </div>
-  </div>
+            <input type="radio" class="btn-check" name="tipoUsuario" id="administrador" value="administrador"
+              <?php if (isset($_POST['tipoUsuario']) && $_POST['tipoUsuario'] === 'administrador') echo 'checked'; ?>>
+            <label class="btn btn-outline-warning" for="administrador">Admin</label>
+          </div>
+        </div>
 
-  <div class="form-group">
-    <label for="correo">Correo electrónico</label>
-    <input type="email" class="form-control" id="correo" name="correo" required placeholder="ejemplo@correo.com"
-           value="<?php echo htmlspecialchars($_POST['correo'] ?? ''); ?>">
-  </div>
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" class="form-control" id="correo" name="correo" required
+                 placeholder="ejemplo@correo.com"
+                 value="<?php echo htmlspecialchars($_POST['correo'] ?? ''); ?>">
+        </div>
 
-  <div class="form-group">
-    <label for="contrasena">Contraseña</label>
-    <div class="input-group">
-      <input type="password" class="form-control" id="contrasena" name="contrasena" required placeholder="Ingresa tu contraseña">
-    </div>
-  </div>
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <div class="input-group">
+            <input type="password" class="form-control" id="contrasena" name="contrasena" required
+                   placeholder="Ingresa tu contraseña">
+          </div>
+        </div>
 
-  <button type="submit" class="btn btn-primary btn-lg mt-3">Iniciar Sesión</button>
-</form>
-
+        <button type="submit" class="btn btn-primary btn-lg mt-3">Iniciar Sesión</button>
+      </form>
 
       <p class="text-center mt-4 text-muted">
         ¿No tienes una cuenta?
