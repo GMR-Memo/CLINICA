@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/Conexion.php';
-require_once __DIR__ . '/../modelos/Doctor.php';
+require_once  '../Conexion.php';
+require_once  '../modelos/Doctor.php';
 use Modelos\Doctor;
 
 class DoctorDAO {
