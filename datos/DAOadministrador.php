@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/Conexion.php';
-require_once __DIR__ . '/../modelos/Administrador.php';
+require_once  '../Conexion.php';
+require_once  '../modelos/Administrador.php';
 
 use Modelos\Administrador;
 
