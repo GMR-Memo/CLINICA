@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/../datos/DAOcitas.php';
+require_once __DIR__ . '../datos/DAOcitas.php';
 
 use Modelos\Cita;
 
