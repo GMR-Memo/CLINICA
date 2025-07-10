@@ -35,22 +35,25 @@ class AdministradorDAO {
         return $admin;
     }
 
-  public function obtenerPorId(int $id): ?Administrador {
-    $sql = "SELECT id, correo 
-            FROM administradores 
-            WHERE id = :id";
+public function obtenerPorCorreo(string $correo): ?Administrador {
+    $sql = "SELECT id, correo, contrasena
+            FROM administradores
+            WHERE correo = :correo";
     $stmt = $this->con->prepare($sql);
-    $stmt->execute([':id' => $id]);
-    $fila = $stmt->fetch(\PDO::FETCH_ASSOC);
+    $stmt->execute([':correo' => $correo]);
+    $fila = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$fila) return null;
 
-    return new Administrador(
+    // necesitas el hash para password_verify, así que lo metemos en el objeto
+    $admin = new Administrador(
         (int)$fila['id'],
-        '',               // ya no tienes nombre
+        '',  // nombre no lo usas
         $fila['correo'],
-        ''                // no devolvemos la contraseña
+        $fila['contrasena']
     );
-}   
+    return $admin;
+}
+
 
     // (Opcional) actualizar y eliminar...
 }
