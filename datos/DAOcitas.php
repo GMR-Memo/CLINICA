@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/Conexion.php';
-require_once __DIR__ . '/../modelos/Cita.php';
+require_once  '../Conexion.php';
+require_once  '../modelos/Cita.php';
 
 use Modelos\Cita;
 

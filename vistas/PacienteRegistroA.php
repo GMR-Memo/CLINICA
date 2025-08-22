@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['msg'] = 'alert-success--Paciente registrado correctamente';
         }
 
-        header('Location: login.php');
+        header('Location: ListaPacientesAdmin.php');
         exit;
     }
 }
@@ -174,7 +174,7 @@ include __DIR__ . '/headerlistas.php';
 
             <div class="d-grid">
               <button type="submit" class="btn btn-success btn-lg"><?= $editar ? 'Actualizar' : 'Crear cuenta' ?></button>
-    <a href="login.php" class="btn btn-secondary">Regresar</a>
+    <a href="menuAdmin.php" class="btn btn-secondary">Regresar</a>
 
             </div>
           </form>

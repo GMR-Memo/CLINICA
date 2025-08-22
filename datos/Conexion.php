@@ -2,12 +2,12 @@
 /**
  * Clase para manejar la conexión a PostgreSQL mediante PDO
  */
-class Conexion {
-    private static $servidor  = 'localhost';
-    private static $puerto    = '5433';
-    private static $bd        = 'ClinicaSalud';
-    private static $usuario   = 'postgres';
-    private static $password  = 'root1234';
+class ConexionH {
+    private static $servidor  = 'dpg-d1napbqdbo4c73fvjt0g-a.oregon-postgres.render.com';
+    private static $puerto    = '5432';
+    private static $bd        = 'clinicasalud';
+    private static $usuario   = 'memo';
+    private static $password  = 'cE8pCJJ3zUIRViynRXwIUVx8vLjgrcmj';
     private static $conexion  = null;
 
     private function __construct() {}

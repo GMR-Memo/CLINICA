@@ -1,54 +1,40 @@
 <?php
-// datos/DAOUsuario.php
+// Archivo: datos/DAOUsuario.php
 
-require_once __DIR__ . '/Conexion.php';
+require_once '../Conexion.php';
+
 
 class DAOUsuario {
-    private $con;
+    private \PDO $con;
 
     public function __construct() {
         $this->con = Conexion::conectar();
     }
 
     /**
-     * Autentica al usuario por correo, contraseña y rol
+     * Autentica al usuario por correo, contraseña y rol.
      * @param string $correo
      * @param string $contrasena
-     * @param string $rol ('paciente', 'doctor' o 'administrador')
-     * @return object|null Devuelve un objeto con ID, correo y rol si es válido, sino null
+     * @param string $rol         // "paciente", "doctor" o "administrador"
+     * @return object|null        // { id, correo, rol, contrasena(hash) } o null
      */
     public function autenticar(string $correo, string $contrasena, string $rol): ?object {
-        $sql = "SELECT * FROM usuarios WHERE correo = :correo AND rol = :rol";
+        $sql = "
+            SELECT *
+            FROM usuarios
+            WHERE correo = :correo
+              AND rol    = :rol
+            LIMIT 1
+        ";
         $stmt = $this->con->prepare($sql);
         $stmt->execute([
             ':correo' => $correo,
-            ':rol'    => $rol
+            ':rol'    => $rol,
         ]);
-        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($usuario && password_verify($contrasena, $usuario['contrasena'])) {
-            return (object)[
-                'id'     => (int)$usuario['id'],
-                'correo' => $usuario['correo'],
-                'rol'    => $usuario['rol']
-            ];
+        $usr = $stmt->fetch(\PDO::FETCH_OBJ);
+        if ($usr && password_verify($contrasena, $usr->contrasena)) {
+            return $usr;
         }
-
         return null;
-    }
-
-    /**
-     * Registra un nuevo administrador
-     * @param string $correo
-     * @param string $contrasena
-     * @return bool
-     */
-    public function registrarAdministrador(string $correo, string $contrasena): bool {
-        $sql = "INSERT INTO usuarios (correo, contrasena, rol) VALUES (:correo, :contrasena, 'administrador')";
-        $stmt = $this->con->prepare($sql);
-        return $stmt->execute([
-            ':correo'     => $correo,
-            ':contrasena' => password_hash($contrasena, PASSWORD_DEFAULT)
-        ]);
     }
 }

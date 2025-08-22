@@ -1,6 +1,6 @@
 <?php 
-require_once __DIR__ . '/Conexion.php';
-require_once __DIR__ . '/../modelos/Paciente.php';
+require_once  '../Conexion.php';
+require_once  '../modelos/Paciente.php';
 
 use Modelos\Paciente;
 

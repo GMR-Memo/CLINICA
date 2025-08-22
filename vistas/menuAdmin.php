@@ -24,8 +24,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'admin') {
       <nav class="nav flex-column">
         <div class="nav-section">Gestión</div>
         <a href="ListaDoctores.php" class="nav-item"><i class="fas fa-user-md me-2"></i>Doctores</a>
-        <a href="ListapacientesAdmin.php" class="nav-item"><i class="fas fa-users me-2"></i>Pacientes</a>
-        <a href="ListaCitasAdmin.php" class="nav-item"><i class="fas fa-calendar-check me-2"></i>Citas</a>
+        <a href="ListaPacientesAdmin.php" class="nav-item"><i class="fas fa-users me-2"></i>Pacientes</a>
+        <a href="listacitasAdmin.php" class="nav-item"><i class="fas fa-calendar-check me-2"></i>Citas</a>
  <a href="DoctorRegistro.php" class="nav-item"><i class="fas fa-calendar-check me-2"></i>Doctor</a>
       <div class="nav-section">Reportes</div>
 <a href="reportes.php" class="nav-item">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'admin') {
 
     <main class="content flex-fill p-4">
       <h1 class="mb-4">Bienvenido, <span class="text-success"><?php echo $_SESSION['usuario_nombre']; ?></span></h1>
-      <p>Desde este panel puedes gestionar doctores, pacientes, citas, configuraciones y visualizar reportes del sistema.</p>
+      <p>Desde este panel puedes gestionar doctores, pacientes, citas, configuraciones del sistema.</p>
     </main>
   </div>
 </body>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once __DIR__ . '/../datos/DAOcitas.php';
+require_once  '../datos/DAOcitas.php';
 
 use Modelos\Cita;
 
 $dao = new CitaDAO();
 $citas = $dao->obtenerTodos();
 
-include __DIR__ . '../headerlistas.php';
+include  'headerlistas.php';
 
 if (isset($_SESSION['msg'])) {
   [$tipo, $texto] = explode('--', $_SESSION['msg'], 2);
